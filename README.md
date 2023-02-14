@@ -12,6 +12,8 @@ Update 1.1.0: Support For Microsoft Teams (Work, School, Personal) Notifications
 
 - Run ``` topright.exe ``` for the top right
 
+- Run ``` bottomleft.exe ``` for the bottom left
+
 - Add a shortcut to it in ``` %appdata%\Microsoft\Windows\Start Menu\Programs\Startup ``` if you want it to run on boot
 
 

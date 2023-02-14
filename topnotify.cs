@@ -61,6 +61,24 @@ public class Program {
 
                         SetWindowPos(teamsHwnd, 0, Screen.PrimaryScreen.Bounds.Width - NotifyRect.Width - 15, 15, 100, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_SHOWWINDOW);
                     }
+                    else if (System.AppDomain.CurrentDomain.FriendlyName == "bottomleft.exe"){
+                        //Sets to bottom left
+                        
+                        
+                        //Get the current position of the notification window
+                        Rectangle NotifyRect = new Rectangle();
+                        GetWindowRect(teamsHwnd, ref NotifyRect);
+                        
+                        NotifyRect.Width = NotifyRect.Width - NotifyRect.X;
+                        NotifyRect.Height = NotifyRect.Height - NotifyRect.Y;
+
+                        // 40PX Y Offset to match the default notification area being above taskbar
+                        NotifyRect.X = 0;
+                        NotifyRect.Y = Screen.PrimaryScreen.Bounds.Height - NotifyRect.Height - 15;
+
+                        // Set the position of the window
+                        SetWindowPos(teamsHwnd, 0, NotifyRect.X, NotifyRect.Y, 100, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_SHOWWINDOW);
+                    }
                 }
                 else {
                     if (Cooldown >= 30){
@@ -93,6 +111,22 @@ public class Program {
 
                 //50PX Y offset to make the spacing even
                 SetWindowPos(hwnd, 0, Screen.PrimaryScreen.Bounds.Width - NotifyRect.Width, -50, 0, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_SHOWWINDOW);
+            }
+            else if (System.AppDomain.CurrentDomain.FriendlyName == "bottomleft.exe")
+            {
+                // Get the current position of the notification window
+                Rectangle NotifyRect = new Rectangle();
+                GetWindowRect(hwnd, ref NotifyRect);
+
+                NotifyRect.Width = NotifyRect.Width - NotifyRect.X;
+                NotifyRect.Height = NotifyRect.Height - NotifyRect.Y;
+                
+                // 40PX Y Offset to match the default notification area being above taskbar
+                NotifyRect.X = 0;
+                NotifyRect.Y = Screen.PrimaryScreen.Bounds.Height - NotifyRect.Height - 40;
+
+                // Set the position of the window
+                SetWindowPos(hwnd, 0, NotifyRect.X, NotifyRect.Y, 0, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_SHOWWINDOW);
             }
 
             Thread.Sleep(10);
